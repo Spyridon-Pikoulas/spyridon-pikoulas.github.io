@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ page.title }} &middot; Spyridon Pikoulas &middot; HeyHeyThere</title>
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#07080d">
+  {% if page.description %}<meta name="description" content="{{ page.description | escape }}">{% endif %}
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body{% if page.theme %} class="theme-{{ page.theme }}"{% endif %}>
+  <header class="top"><a class="brand" href="/">Spyridon Pikoulas &middot; HeyHeyThere</a><nav><a href="/games/"{% if page.theme == "games" %} aria-current="page"{% endif %}>Game assets</a><a href="/demos/">Demos</a><a href="/#contact">Contact</a></nav></header>
+  <script>{const a = document.querySelector("nav a[aria-current]"), n = a && a.parentElement; if (a) { const r = a.getBoundingClientRect(), m = n.getBoundingClientRect(); n.scrollLeft += r.left + r.width / 2 - m.left - m.width / 2; }}</script>
+  <main class="page{% if page.wide %} wide{% endif %}">
+    {{ content }}
+    <footer>&copy; 2026 Spyridon Pikoulas &middot; <a href="mailto:spyridwn.pd@gmail.com">spyridwn.pd@gmail.com</a>{% unless page.no_stores %} &middot; <a href="https://heyheythere.itch.io/" rel="me">itch.io</a>{% endunless %} &middot; <a href="https://x.com/HeyHeyThereeee" rel="me">X</a> &middot; <a href="https://bsky.app/profile/heyheytheree.bsky.social" rel="me">Bluesky</a> &middot; <a href="https://www.reddit.com/user/HeyHeyTheree" rel="me">Reddit</a> &middot; <a href="https://www.tiktok.com/@heyheythereeeeee" rel="me">TikTok</a> &middot; <a href="https://www.instagram.com/heyheythereeeeee" rel="me">Instagram</a>{% if page.theme == "addons" %}<br>Google Workspace, Google Sheets, Google Slides, Google Calendar and Google Photos are trademarks of Google LLC.{% endif %}</footer>
+  </main>
+</body>
+</html>
