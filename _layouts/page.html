@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ page.title }} &middot; heyheythere</title>
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#181628">
+  {% if page.description %}<meta name="description" content="{{ page.description | escape }}">{% endif %}
+  <link rel="icon" href="/media/avatar.webp">
+  <link rel="canonical" href="https://heyheythere.com{{ page.url }}">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <header class="top"><a class="brand" href="/">heyheythere</a><nav><a href="/#work">Work</a><a href="/#about">About</a><a href="/demos/">Demos</a><a href="/#contact">Contact</a></nav></header>
+  <main class="page">
+    <article>
+    {{ content }}
+    </article>
+    <footer>&copy; 2026 Spyridon Pikoulas &middot; <a href="mailto:spyridwn.pd@gmail.com">spyridwn.pd@gmail.com</a></footer>
+  </main>
+</body>
+</html>
