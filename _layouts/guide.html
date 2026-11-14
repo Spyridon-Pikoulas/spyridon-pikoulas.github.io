@@ -1,0 +1,49 @@
+<!doctype html>
+{%- assign parts = page.url | split: "/" -%}
+{%- assign root = "/docs/" | append: parts[2] | append: "/" -%}
+{%- assign home = site.pages | where: "url", root | first -%}
+{%- assign pages = site.pages | where_exp: "p", "p.url contains root" | sort: "order", "last" -%}
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ page.title }} &middot; heyheythere</title>
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#181628">
+  {% if page.description %}<meta name="description" content="{{ page.description | escape }}">{% endif %}
+  <link rel="icon" href="/media/avatar.webp">
+  <link rel="canonical" href="https://heyheythere.com{{ page.url }}">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/docs/guide.css">
+  <script defer src="/docs/guide.js"></script>
+</head>
+<body class="guide">
+  <header class="top"><a class="brand" href="/">heyheythere</a><nav><a href="/#work">Work</a><a href="/#about">About</a><a href="/demos/">Demos</a><a href="/#contact">Contact</a></nav></header>
+  <div class="guide-wrap">
+    <aside class="guide-side">
+      <details class="contents">
+        <summary>Contents</summary>
+        <a class="guide-title" href="{{ root }}">{{ home.guide | default: home.title }}</a>
+        <ol class="guide-pages">
+          {%- for p in pages %}
+          <li{% if p.url == page.url %} class="here"{% endif %}><a href="{{ p.url }}"{% if p.url == page.url %} aria-current="page"{% endif %}>{{ p.nav | default: p.title | split: " · " | first }}</a>{% if p.url == page.url %}<ol class="toc" hidden></ol>{% endif %}</li>
+          {%- endfor %}
+        </ol>
+      </details>
+    </aside>
+    <main class="guide-main">
+      <article>
+{{ content }}
+      </article>
+      {%- for p in pages -%}{%- if p.url == page.url -%}{%- assign i = forloop.index0 -%}{%- endif -%}{%- endfor -%}
+      {%- assign before = i | minus: 1 -%}{%- assign after = i | plus: 1 %}
+      <nav class="pager" aria-label="Previous and next page">
+        {% if i > 0 %}{% assign p = pages[before] %}<a class="prev" href="{{ p.url }}"><small>Previous</small>{{ p.nav | default: p.title | split: " · " | first }}</a>{% endif %}
+        {% if after < pages.size %}{% assign p = pages[after] %}<a class="next" href="{{ p.url }}"><small>Next</small>{{ p.nav | default: p.title | split: " · " | first }}</a>{% endif %}
+      </nav>
+      <footer>&copy; 2026 Spyridon Pikoulas &middot; <a href="mailto:spyridwn.pd@gmail.com">spyridwn.pd@gmail.com</a></footer>
+    </main>
+  </div>
+  <dialog class="zoom" aria-label="Picture"><form method="dialog"><button aria-label="Close">&times;</button></form><img alt=""></dialog>
+</body>
+</html>

@@ -1,0 +1,74 @@
+/* The itch store's theme (heyheythere.itch.io): its colours, square corners, background and banner.
+   The pixel fonts are crisp at whole pixels: Anvil at multiples of 9px, Hearth of 8px. */
+@font-face { font-family: Anvil; font-display: swap; src: url(/fonts/anvil.woff2) format("woff2"); }
+@font-face { font-family: Hearth; font-display: swap; src: url(/fonts/hearth.woff2) format("woff2"); }
+:root {
+  color-scheme: dark;
+  --bg: #181628; --panel: #232133; --line: #383555; --fg: #e9e4f2; --dim: rgba(233, 228, 242, .75);
+  --gold: #ffcf75; --ember: #5d275d;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 64px; }
+body { margin: 0; color: var(--fg); font: 16px/1.6 Lato, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  background: var(--bg) url(/media/background.webp) repeat-y 50% 0; }
+a { color: var(--gold); text-underline-offset: 3px; }
+a:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+p { margin: 0 0 14px; }
+h1, h2, figcaption b, .brand { font-family: Anvil, monospace; font-weight: 400; color: var(--gold); }
+h2 { font-size: 36px; line-height: 1.2; margin: 0 0 16px; text-shadow: 4px 4px 0 var(--ember); }
+img.banner, .avatar { image-rendering: pixelated; }
+
+.top { position: sticky; top: 0; z-index: 2; display: flex; align-items: center; gap: 20px; padding: 10px max(20px, calc(50% - 480px));
+  background: rgba(24, 22, 40, .92); border-bottom: 2px solid var(--line); }
+.brand { font-size: 27px; line-height: 1; text-decoration: none; text-shadow: 3px 3px 0 var(--ember); }
+nav { display: flex; gap: 4px; margin-left: auto; overflow-x: auto; scrollbar-width: none; }
+nav a { padding: 4px 10px; color: var(--fg); text-decoration: none; font: 16px Hearth, monospace; white-space: nowrap; }
+nav a:hover { background: var(--panel); color: var(--gold); }
+
+main { max-width: 960px; margin: 0 auto; padding: 32px 20px 48px; }
+section { margin-top: 56px; }
+.panel { padding: 28px; background: var(--panel); border: 2px solid var(--line); }
+
+.hero { text-align: center; }
+.hero h1 { margin: 0; }
+img.banner { max-width: 100%; height: auto; }
+.lead { max-width: 640px; margin: 8px auto 22px; font-size: 19px; }
+.actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+.button { padding: 10px 18px; background: var(--gold); color: var(--bg); font: 16px Hearth, monospace; text-decoration: none;
+  box-shadow: 4px 4px 0 var(--ember); }
+.button:hover { filter: brightness(1.08); }
+.button.quiet { background: var(--panel); color: var(--gold); box-shadow: inset 0 0 0 2px var(--line); }
+
+.about { display: flex; gap: 28px; align-items: flex-start; }
+.avatar { flex: none; width: 120px; height: 120px; border: 2px solid var(--line); }
+.about p { margin: 0; }
+
+.work { display: grid; gap: 20px; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+figure { margin: 0; background: var(--panel); border: 2px solid var(--line); }
+figure img { display: block; width: 100%; height: auto; }
+figcaption { padding: 12px 14px 16px; color: var(--dim); font-size: 15px; line-height: 1.45; }
+figcaption b { display: block; margin-bottom: 6px; font-size: 18px; line-height: 1.2; text-shadow: 2px 2px 0 var(--ember); }
+.more { margin-top: 20px; }
+
+.links { display: flex; flex-wrap: wrap; gap: 10px; }
+.links a { padding: 6px 12px; background: var(--panel); border: 2px solid var(--line); font: 16px Hearth, monospace; text-decoration: none; }
+.links a:hover { border-color: var(--gold); }
+
+footer { margin-top: 56px; padding-top: 16px; border-top: 2px solid var(--line); font-size: 14px; color: var(--dim); }
+
+.page h1 { font-size: 36px; line-height: 1.2; margin: 0 0 18px; text-shadow: 4px 4px 0 var(--ember); }
+.page h2 { font-size: 27px; margin: 32px 0 12px; text-shadow: 3px 3px 0 var(--ember); }
+.page article { padding: 28px 32px; background: var(--panel); border: 2px solid var(--line); }
+.page article > :last-child { margin-bottom: 0; }
+
+@media (max-width: 640px) {
+  .top { flex-wrap: wrap; justify-content: center; gap: 4px; padding: 8px 12px 4px; }
+  nav { margin: 0; }
+  .brand { font-size: 18px; text-shadow: 2px 2px 0 var(--ember); }
+  nav a { padding: 4px 6px; }
+  h2, .page h1 { font-size: 27px; text-shadow: 3px 3px 0 var(--ember); }
+  .panel, .page article { padding: 20px; }
+  .about { flex-direction: column; gap: 16px; }
+  .avatar { width: 80px; height: 80px; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }

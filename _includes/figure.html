@@ -1,0 +1,4 @@
+{%- comment -%} One line of HTML, so a figure indented under a list step stays in the step. {%- endcomment -%}
+{%- assign parts = page.url | split: "/" -%}
+{%- assign src = "/docs/" | append: parts[2] | append: "/shots/" | append: include.src -%}
+<figure class="shot{% if include.size %} {{ include.size }}{% endif %}"><a href="{{ src }}"><img src="{{ src }}" alt="{{ include.alt | escape }}" loading="lazy"></a>{% if include.caption %}<figcaption>{{ include.caption | markdownify | remove: "<p>" | remove: "</p>" | strip }}</figcaption>{% endif %}</figure>
