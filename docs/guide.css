@@ -1,0 +1,128 @@
+/* The product guides (`_layouts/guide.html`), over the brand's /style.css: a contents sidebar beside a
+   wide page whose text keeps a reading measure while pictures, code and tables take the whole width;
+   steps, callouts, code with copy buttons, figures that enlarge. */
+.guide { --side: 264px; --text: 740px; --page: 1040px; --code: #120f1f; --note: #6fa8dc; --tip: #7cc68d; --warn: #ffb35c; }
+.guide .top { padding: 10px 24px; }
+.guide-wrap { display: grid; grid-template-columns: var(--side) minmax(0, 1fr); gap: 40px; max-width: 1400px; margin: 0 auto;
+  padding: 0 24px; }
+
+/* The sidebar: the guide's pages, this page's headings under its own entry */
+.guide-side { position: sticky; top: 58px; align-self: start; max-height: calc(100vh - 58px); overflow-y: auto;
+  padding: 28px 0 32px; scrollbar-width: thin; }
+.contents > summary { display: none; }
+.guide-title { display: block; margin: 0 0 14px; font: 18px/1.2 Anvil, monospace; color: var(--gold); text-decoration: none;
+  text-shadow: 2px 2px 0 var(--ember); }
+.guide-pages, .toc { list-style: none; margin: 0; padding: 0; }
+.guide-pages a { display: block; padding: 5px 10px; border-left: 2px solid var(--line); color: var(--dim); font-size: 15px;
+  line-height: 1.35; text-decoration: none; }
+.guide-pages a:hover { color: var(--fg); background: var(--panel); }
+.guide-pages a[aria-current] { color: var(--gold); border-left-color: var(--gold); background: var(--panel); }
+.toc { margin: 2px 0 8px; }
+.toc a { padding: 3px 10px 3px 22px; font-size: 14px; }
+.toc .h3 a { padding-left: 34px; font-size: 13.5px; }
+.toc a.on { color: var(--fg); border-left-color: var(--fg); }
+
+/* The page */
+.guide-main { min-width: 0; max-width: none; margin: 0; padding: 32px 0 48px; }  /* not the site's centred main, whose auto margins size a grid item to its content: each page a width of its own */
+.guide article { max-width: var(--page); padding: 32px 40px 36px; background: var(--panel); border: 2px solid var(--line); }
+.guide article > :last-child { margin-bottom: 0; }
+.guide h1 { font-size: 36px; line-height: 1.2; margin: 0 0 12px; text-shadow: 4px 4px 0 var(--ember); }
+.guide h2 { font-size: 27px; margin: 40px 0 14px; padding-top: 22px; border-top: 2px solid var(--line); text-shadow: 3px 3px 0 var(--ember); }
+.guide h1 + h2 { border-top: 0; padding-top: 0; }
+.guide h3 { margin: 28px 0 10px; font-size: 19px; color: var(--fg); }
+.guide h2, .guide h3 { scroll-margin-top: 72px; }
+.guide h1 + p { font-size: 19px; color: var(--fg); margin-bottom: 22px; }
+.guide article li { margin: 4px 0; }
+.guide article li > p { margin: 0 0 6px; }
+.guide hr { border: 0; border-top: 2px solid var(--line); margin: 32px 0; }
+.guide kbd { padding: 1px 6px; border: 1px solid var(--line); border-bottom-width: 3px; background: var(--bg); font: 13px/1.4 ui-monospace,
+  Consolas, monospace; }
+.guide strong { color: #fff; }
+.anchor { margin-left: 8px; color: var(--line); text-decoration: none; text-shadow: none; opacity: 0; }
+h2:hover .anchor, h3:hover .anchor, .anchor:focus { opacity: 1; }
+
+/* Numbered steps: an ordered list straight in the page */
+.guide article > ol { counter-reset: step; list-style: none; padding-left: 0; }
+.guide article > ol > li { counter-increment: step; position: relative; margin: 0 0 12px; padding-left: 44px; min-height: 30px; }
+.guide article > ol > li::before { content: counter(step); position: absolute; left: 0; top: -1px; width: 28px; height: 28px;
+  background: var(--gold); color: var(--bg); font: 16px/28px Hearth, monospace; text-align: center; box-shadow: 3px 3px 0 var(--ember); }
+.guide article > ol > li > figure.shot { margin: 12px 0 18px; }
+
+/* Callouts: > [!NOTE], > [!TIP], > [!WARNING] (guide.js), and a plain quote */
+.guide blockquote { margin: 18px 0; padding: 12px 16px; border-left: 4px solid var(--line); background: rgba(0, 0, 0, .18); }
+.guide blockquote > :last-child { margin-bottom: 0; }
+.callout { --c: var(--note); border-left-color: var(--c) !important; background: color-mix(in srgb, var(--c) 9%, transparent) !important; }
+.callout.tip { --c: var(--tip); }
+.callout.warning { --c: var(--warn); }
+.callout-title { display: block; margin-bottom: 4px; color: var(--c); font: 16px Hearth, monospace; }
+
+/* Code */
+.guide code { padding: 1px 5px; background: var(--code); font: 14px/1.5 ui-monospace, Consolas, "Cascadia Mono", monospace; }
+.guide pre { position: relative; margin: 0 0 18px; padding: 14px 16px; overflow-x: auto; background: var(--code);
+  border: 2px solid var(--line); }
+.guide pre code { padding: 0; background: none; font-size: 14px; }
+.guide div.highlighter-rouge { margin: 0 0 18px; }
+.guide div.highlighter-rouge pre { margin: 0; }
+.code { position: relative; margin: 0 0 18px; }
+.code > div, .code > pre { margin: 0 !important; }
+.code-bar { display: flex; align-items: center; justify-content: space-between; padding: 4px 6px 4px 14px; border: 2px solid var(--line);
+  border-bottom: 0; background: #1d1a2e; color: var(--dim); font: 14px Hearth, monospace; }
+.code-bar button { padding: 3px 10px; border: 0; background: var(--panel); color: var(--fg); font: 14px Hearth, monospace; cursor: pointer; }
+.code-bar button:hover { color: var(--gold); }
+.code.console pre code { color: #c6f3c9; }
+
+/* Tables */
+.guide table { width: 100%; margin: 0 0 18px; border-collapse: collapse; font-size: 15px; display: block; overflow-x: auto; }
+.guide th, .guide td { padding: 7px 10px; border: 1px solid var(--line); text-align: left; vertical-align: top; }
+.guide th { background: rgba(0, 0, 0, .2); color: var(--fg); }
+
+/* Figures */
+.guide figure.shot { margin: 20px 0 24px; background: none; border: 0; }
+.guide figure.shot a { display: block; width: fit-content; max-width: 100%; border: 2px solid var(--line); cursor: zoom-in; }
+.guide figure.shot a:hover { border-color: var(--gold); }
+.guide figure.shot img { display: block; max-width: 100%; height: auto; }
+.guide figure.shot.small a { max-width: min(100%, 460px); }
+.guide figure.shot.wide a { width: 100%; }
+.guide figure.shot.wide img { width: 100%; }
+.guide figure.shot figcaption { padding: 8px 2px 0; font-size: 14.5px; }
+.guide .gallery { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); align-items: start; margin: 20px 0; }
+.guide .gallery figure.shot { margin: 0; }
+.zoom { max-width: 96vw; max-height: 94vh; padding: 0; border: 2px solid var(--line); background: var(--bg); }
+.zoom::backdrop { background: rgba(8, 6, 16, .85); }
+.zoom img { display: block; max-width: 94vw; max-height: 92vh; }
+.zoom form { position: absolute; top: 6px; right: 6px; }
+.zoom button { width: 34px; height: 34px; border: 2px solid var(--line); background: var(--panel); color: var(--fg); font-size: 22px;
+  line-height: 1; cursor: pointer; }
+
+/* Previous and next */
+.pager { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; max-width: var(--page); margin-top: 24px; }
+.pager a { padding: 12px 16px; background: var(--panel); border: 2px solid var(--line); text-decoration: none; font-weight: 700; }
+.pager a:hover { border-color: var(--gold); }
+.pager small { display: block; color: var(--dim); font: 14px Hearth, monospace; }
+.pager .next { grid-column: 2; text-align: right; }
+.guide footer { max-width: var(--page); }
+.guide article > :is(p, ul, ol, blockquote, h1, h2, h3, h4, dl) { max-width: var(--text); }
+.guide article > h2 { max-width: none; }
+/* Steps with pictures: the pictures as wide as the page, the words at the reading measure */
+.guide article > ol:has(> li > figure) { max-width: none; }
+.guide article > ol:has(> li > figure) > li:not(:has(> figure)),
+.guide article > ol:has(> li > figure) > li > :not(figure) { max-width: calc(var(--text) - 44px); }
+
+@media (max-width: 900px) {
+  .guide-wrap { display: block; padding: 0 8px; }
+  .guide-side { position: static; max-height: none; padding: 14px 0 0; }
+  .contents { background: var(--panel); border: 2px solid var(--line); }
+  .contents > summary { display: block; padding: 10px 14px; color: var(--gold); font: 16px Hearth, monospace; cursor: pointer; }
+  .contents[open] > summary { border-bottom: 2px solid var(--line); }
+  .guide-title { margin: 12px 14px; }
+  .guide-pages { padding: 0 14px 12px; }
+  .guide-main { padding-top: 14px; }
+  .guide article { padding: 20px 14px 24px; }
+  .guide h1 { font-size: 27px; text-shadow: 3px 3px 0 var(--ember); }
+  .guide h2 { font-size: 22px; }
+  .guide td code { overflow-wrap: anywhere; }  /* a long name in a cell breaks rather than push the table off the screen */
+  .guide article > ol > li { padding-left: 38px; }
+  .guide article > ol > li > figure.shot { margin-left: -38px; }
+  .pager { grid-template-columns: 1fr; }
+  .pager .next { grid-column: 1; }
+}
